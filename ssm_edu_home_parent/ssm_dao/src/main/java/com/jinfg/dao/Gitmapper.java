@@ -6,4 +6,5 @@ package com.jinfg.dao;
  */
 public interface Gitmapper {
     public void add();
+    public void update();
 }
