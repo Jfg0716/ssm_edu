@@ -57,7 +57,7 @@
         description,
         create_time,
         update_time
-    ) VALUES(#{courseId},#{teacherName},#{position},#{description},#{createTime},#{updateTime});
+        ) VALUES(#{courseId},#{teacherName},#{position},#{description},#{createTime},#{updateTime});
     </insert>
 
     <!-- 根据id查询 -->
@@ -130,7 +130,9 @@
         </trim>
 
         <where>
-            <if test="id!=null and id != '' ">id=#{id}</if>
+            <if test="id!=null and id != '' ">
+                id=#{id}
+            </if>
         </where>
 
     </update>

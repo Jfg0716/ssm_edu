@@ -19,4 +19,7 @@ public interface MenuService {
     public List<Menu> findAllMenu();
 
     Menu findMenuById(Integer id);
+
+    void saveMenu(Menu menu);
+    void updateMenu(Menu menu);
 }

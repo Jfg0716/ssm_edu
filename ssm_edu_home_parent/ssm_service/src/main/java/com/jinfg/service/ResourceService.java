@@ -10,4 +10,6 @@ import com.jinfg.domain.ResourceVo;
  */
 public interface ResourceService {
     public PageInfo<Resource> findAllResource(ResourceVo resourceVo);
+    void saveResource(Resource resource);
+    void updateResource(Resource resource);
 }

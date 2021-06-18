@@ -34,7 +34,6 @@ public class CourseController {
     /*
         多条件课程列表查询
      */
-
     @RequestMapping("/findCourseByCondition")
     public ResponseResult findCourseByCondition(@RequestBody CourseVO courseVO){
         //调用service

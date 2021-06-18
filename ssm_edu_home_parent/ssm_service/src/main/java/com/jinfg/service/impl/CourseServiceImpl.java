@@ -97,6 +97,9 @@ public class CourseServiceImpl implements CourseService {
         courseMapper.updateTeacher(teacher);
     }
 
+    /*
+        课程状态变更
+     */
     @Override
     public void updateCourseStatus(int id, int status) {
         try {

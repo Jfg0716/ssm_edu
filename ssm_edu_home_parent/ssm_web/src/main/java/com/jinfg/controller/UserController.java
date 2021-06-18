@@ -9,6 +9,7 @@ import com.jinfg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /* 用户分页&条件查询 */
     @RequestMapping("/findAllUserByPage")
     public ResponseResult findAllUserByPage(@RequestBody UserVo userVo){
         PageInfo pageInfo = userService.findAllUserByPage(userVo);
@@ -37,7 +39,7 @@ public class UserController {
         return responseResult;
     }
 
-    /*用户登录*/
+    /* 用户登录 */
     @RequestMapping("/login")
     public ResponseResult login(User user, HttpServletRequest request) throws Exception {
         User login = userService.login(user);
@@ -61,9 +63,7 @@ public class UserController {
         return result;
     }
 
-    /*
-        分配角色（回显）
-     */
+    /* 分配角色（回显） */
     @RequestMapping("/findUserRoleById")
     public ResponseResult findUserRelationRoleById(Integer id){
         List<Role> roleList = userService.findUserRelationRoleById(id);
@@ -71,19 +71,14 @@ public class UserController {
     }
 
 
-    /*
-        分配角色
-     */
+    /* 分配角色  */
     @RequestMapping("/userContextRole")
     public ResponseResult userContextRole(@RequestBody UserVo userVo){
         userService.userContextRole(userVo);
         return new ResponseResult(true,200,"分配角色成功",null);
     }
 
-    /*
-        获取用户权限，进行菜单动态展示
-     */
-
+    /*  获取用户权限，进行菜单动态展示 */
     @RequestMapping("/getUserPermissions")
     public ResponseResult getUserPermissions(HttpServletRequest request){
         // 1.获取请求头中的token
@@ -100,6 +95,23 @@ public class UserController {
         }else {
             ResponseResult responseResult = new ResponseResult(false, 400, "获取菜单信息失败", null);
             return responseResult;
+        }
+    }
+
+    /* 用户状态设置 */
+    @RequestMapping("/updateUserStatus")
+    public ResponseResult updateUserStatus(@RequestParam int id, @RequestParam String status){
+
+        try {
+            userService.updateUserStatus(id,status);
+            //设置数据响应
+            Map<String,Object> map = new HashMap<>();
+            map.put("status",status);
+            ResponseResult result = new ResponseResult(true,200,"响应成功",map);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

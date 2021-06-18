@@ -101,4 +101,21 @@ public class UserServiceImpl implements UserService {
 
         return new ResponseResult(true,200,"获取用户权限信息成功",map);
     }
+
+    /* 用户状态设置 */
+    @Override
+    public void updateUserStatus(int id, String status) {
+        try {
+            //1.封装数据
+            User user = new User();
+            user.setId(id);
+            user.setStatus(status);
+            user.setUpdate_time(new Date());
+
+            //2.调用mapper
+            userMapper.updateUserStatus(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

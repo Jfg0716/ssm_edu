@@ -1,5 +1,7 @@
 package com.jinfg.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Resource {
@@ -9,10 +11,30 @@ public class Resource {
     private String url;
     private Integer categoryId;
     private String description;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdTime;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updatedTime;
+
     private String createdBy;
     private String updatedBy;
+
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", categoryId=" + categoryId +
+                ", description='" + description + '\'' +
+                ", createdTime=" + createdTime +
+                ", updatedTime=" + updatedTime +
+                ", createdBy='" + createdBy + '\'' +
+                ", updatedBy='" + updatedBy + '\'' +
+                '}';
+    }
 
     public Integer getId() {
         return id;
@@ -84,21 +106,5 @@ public class Resource {
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Resource{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
-                ", categoryId=" + categoryId +
-                ", description='" + description + '\'' +
-                ", createdTime=" + createdTime +
-                ", updatedTime=" + updatedTime +
-                ", createdBy='" + createdBy + '\'' +
-                ", updatedBy='" + updatedBy + '\'' +
-                '}';
     }
 }

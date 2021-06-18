@@ -44,4 +44,6 @@ public interface UserMapper {
      */
     public List<Resource> findResourceByRoleId(List<Integer> ids);
 
+    /* 用户状态设置 */
+    public void updateUserStatus(User user);
 }

@@ -21,4 +21,7 @@ public interface RoleService {
     void roleContextMenu(RoleMenuVo roleMenuVo);
 
     void deleteRole(Integer id);
+
+    void saveRole(Role role);
+    void updateRole(Role role);
 }

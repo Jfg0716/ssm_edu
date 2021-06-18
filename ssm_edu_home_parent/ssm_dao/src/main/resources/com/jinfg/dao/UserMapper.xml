@@ -68,4 +68,9 @@
         </foreach>
     </select>
 
+    <!-- 用户状态设置 -->
+    <update id="updateUserStatus" parameterType="com.jinfg.domain.User">
+        update user set status= #{status},update_time = #{updateTime} where id = #{id}
+    </update>
+
 </mapper>

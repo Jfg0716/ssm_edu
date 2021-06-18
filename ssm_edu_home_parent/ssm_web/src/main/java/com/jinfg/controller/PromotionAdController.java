@@ -29,22 +29,19 @@ public class PromotionAdController {
     @Autowired
     private PromotionAdService promotionAdService;
 
-    /*
-        广告分页查询
-     */
+    /* 广告分页查询 */
     @RequestMapping("/findAllAdByPage")
     public ResponseResult findAllAdByPage(PromotionAdVO promotionAdVO){
-
-        PageInfo<PromotionAd> pageInfo = promotionAdService.findAllAdByPage(promotionAdVO);
-        ResponseResult responseResult = new ResponseResult(true, 200, "广告分页查询成功", pageInfo);
+        PageInfo<PromotionAd> pageInfo =
+                promotionAdService.findAllAdByPage(promotionAdVO);
+        ResponseResult responseResult =
+                new ResponseResult(true, 200, "广告分页查询成功", pageInfo);
         return responseResult;
     }
 
-    /*
-        图片上传
-     */
+    /*  图片上传 */
     @RequestMapping("/promotionAdUpload")
-    public ResponseResult fileUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
+    public ResponseResult filesUpload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws IOException {
         //1.判断接收到的上传文件是否为空
         if(file.isEmpty()){
             throw  new RuntimeException();
@@ -78,7 +75,7 @@ public class PromotionAdController {
         return responseResult;
     }
 
-    /* 新增或更新广告位置 */
+    /* 新建&修改广告接口 */
     @RequestMapping("/saveOrUpdatePromotionAd")
     public ResponseResult saveOrUpdatePromotionAd(@RequestBody PromotionAd promotionAd){
         try {
@@ -108,7 +105,7 @@ public class PromotionAdController {
         return null;
     }
 
-    /*** 根据id回显 广告数据 * */
+    /*** 修改回显广告信息接口 * */
     @RequestMapping("/findPromotionAdById")
     public ResponseResult findPromotionAdById(@RequestParam int id){
         try {
@@ -121,9 +118,7 @@ public class PromotionAdController {
         return null;
     }
 
-    /*
-        广告动态上下线
-     */
+    /* 广告动态上下线 */
     @RequestMapping("/updatePromotionAdStatus")
     public ResponseResult updatePromotionStatus(@RequestParam int id,@RequestParam int status){
 

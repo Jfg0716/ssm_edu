@@ -4,6 +4,7 @@ import com.jinfg.domain.Menu;
 import com.jinfg.domain.ResponseResult;
 import com.jinfg.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +29,9 @@ public class MenuController {
         return new ResponseResult(true,200,"响应成功！",list);
     }
 
-    /*
-        回显菜单信息
-     */
-
+    /* 查询菜单信息(回显) */
     @RequestMapping("/findMenuInfoById")
     public ResponseResult findMenuInfoById(Integer id){
-
         // 根据id的值判断当前是更新还是添加操作 判断id的值是否为-1
         if(id == -1){
             // 添加 回显信息中不需要查询menu信息
@@ -55,6 +52,25 @@ public class MenuController {
             return new ResponseResult(true,200,"修改回显成功",map);
         }
 
+    }
+
+    /*  添加&修改菜单 saveOrUpdateMenu */
+    @RequestMapping("/saveOrUpdateMenu")
+    public ResponseResult saveOrUpdateMenu(@RequestBody Menu menu){
+
+        ResponseResult result = null;
+        if (menu.getId() == null){
+            //新增
+            menuService.saveMenu(menu);
+            result = new ResponseResult(true,200,"响应成功",null);
+
+        } else {
+            //修改
+            menuService.updateMenu(menu);
+            result = new ResponseResult(true,200,"响应成功",null);
+
+        }
+        return result;
     }
 
 

@@ -17,4 +17,45 @@
             </if>
         </where>
     </select>
+
+    <!-- 新增-->
+    <insert id="saveResource" parameterType="com.jinfg.domain.Resource">
+        insert into resource(
+            name,
+            url,
+            category_id,
+            description,
+            created_time,
+            updated_time,
+            created_by,
+            updated_by)
+        values(#{name},#{url},#{categoryId},#{description},#{createdTime},#{updatedTime},#{createdBy},#{updatedBy});
+    </insert>
+
+    <!-- 修改-->
+    <update id="updateResource" parameterType="com.jinfg.domain.Resource">
+        update resource
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test=" categoryId != null and categoryId != ''">
+                category_id = #{categoryId},
+            </if>
+            <if test="description != null and description !='' ">
+                description =#{description},
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by =  #{updatedBy},
+            </if>
+        </trim>
+        <where>
+            <if test="id!=null and id != '' ">
+                id=#{id}
+            </if>
+        </where>
+    </update>
 </mapper>

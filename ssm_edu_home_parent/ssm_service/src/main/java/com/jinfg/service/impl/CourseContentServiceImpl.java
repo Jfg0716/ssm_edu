@@ -21,6 +21,8 @@ public class CourseContentServiceImpl implements CourseContentService {
     @Autowired
     private CourseContentMapper mapper;
 
+    Date date = null;
+
     @Override
     public List<CourseSection> findSectionAndLessonByCourseId(int courseId) {
         List<CourseSection> list = mapper.findSectionAndLessonByCourseId(courseId);
@@ -46,7 +48,6 @@ public class CourseContentServiceImpl implements CourseContentService {
     public void updateSection(CourseSection courseSection) {
         // 1. 补全信息
         courseSection.setUpdateTime(new Date());
-
         //2.调courseContentMapper方法
         mapper.updateSection(courseSection);
     }
@@ -66,10 +67,17 @@ public class CourseContentServiceImpl implements CourseContentService {
     @Override
     public void saveLesson(CourseLesson lesson) {
         //补全信息
-         Date date = new Date();
+         date = new Date();
          lesson.setCreateTime(date);
          lesson.setUpdateTime(date);
          mapper.saveLesson(lesson);
+    }
+
+    @Override
+    public void updateLesson(CourseLesson lesson) {
+        date = new Date();
+        lesson.setUpdateTime(date);
+        mapper.updateLesson(lesson);
     }
 
 

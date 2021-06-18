@@ -9,6 +9,7 @@ import com.jinfg.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,5 +28,17 @@ public class ResourceServiceImpl implements ResourceService {
         List<Resource> list = resourceMapper.findAllResource(resourceVo);
         PageInfo<Resource> pageInfo = new PageInfo<>(list);
         return pageInfo;
+    }
+
+    @Override
+    public void saveResource(Resource resource) {
+        resourceMapper.saveResource(resource);
+    }
+
+    @Override
+    public void updateResource(Resource resource) {
+        Date date = new Date();
+        resource.setUpdatedTime(date);
+        resourceMapper.updateResource(resource);
     }
 }

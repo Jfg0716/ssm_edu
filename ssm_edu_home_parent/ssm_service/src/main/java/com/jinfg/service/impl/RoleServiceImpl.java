@@ -20,6 +20,7 @@ import java.util.Map;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
+    Date date = new Date();
 
     @Override
     public List<Role> findAllRole(Role role) {
@@ -44,7 +45,6 @@ public class RoleServiceImpl implements RoleService {
             role_menu_relation.setRoleId(roleMenuVo.getRoleId());
 
             //封装数据
-            Date date = new Date();
             role_menu_relation.setCreatedTime(date);
             role_menu_relation.setUpdatedTime(date);
             role_menu_relation.setCreatedBy("system");
@@ -60,5 +60,23 @@ public class RoleServiceImpl implements RoleService {
         // 清空中间表
         roleMapper.deleteRoleContextMenu(id);
         roleMapper.deleteRole(id);
+    }
+
+    @Override
+    public void saveRole(Role role) {
+        //补全数据
+        role.setCreatedTime(date);
+        role.setUpdatedTime(date);
+        role.setCreatedBy("system");
+        role.setUpdatedBy("system");
+        roleMapper.saveRole(role);
+    }
+
+    @Override
+    public void updateRole(Role role) {
+        //补全数据
+        role.setUpdatedTime(date);
+        role.setUpdatedBy("system");
+        roleMapper.updateRole(role);
     }
 }

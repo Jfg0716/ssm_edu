@@ -20,6 +20,7 @@ public class PromotionSpaceController {
     @Autowired
     private PromotionSpaceService promotionSpaceService;
 
+    /*广告位列表查询*/
     @RequestMapping("/findAllPromotionSpace")
     public ResponseResult findAllPromotionSpace(){
         List<PromotionSpace> allPromotionSpace =
@@ -28,13 +29,9 @@ public class PromotionSpaceController {
         return responseResult;
     }
 
-    /*
-        添加广告位
-     */
-
+    /*添加&修改广告位*/
     @RequestMapping("/saveOrUpdatePromotionSpace")
     public ResponseResult saveOrUpdatePromotionSpace(@RequestBody PromotionSpace promotionSpace){
-
         if(promotionSpace.getId() == null){
             //新增
             promotionSpaceService.savePromotionSpace(promotionSpace);
@@ -45,14 +42,11 @@ public class PromotionSpaceController {
         }
     }
 
-    /*
-        根据ID查询广告位
-     */
-
+    /* 回显广告位名称 */
     @RequestMapping("/findPromotionSpaceById")
     public ResponseResult findPromotionSpaceById(int id){
         PromotionSpace promotionSpace = promotionSpaceService.findPromotionSpaceById(id);
-
         return  new ResponseResult(true,200,"查询具体广告位成功",promotionSpace);
     }
+
 }

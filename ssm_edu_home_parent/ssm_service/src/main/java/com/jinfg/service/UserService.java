@@ -35,4 +35,9 @@ public interface UserService {
         获取用户权限，进行菜单动态展示:getUserPermissions
      */
     public ResponseResult getUserPermissions(Integer id);
+
+    /*
+    用户状态设置
+    */
+    public void updateUserStatus(int id, String status);
 }

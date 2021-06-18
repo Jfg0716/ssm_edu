@@ -27,6 +27,7 @@ public class CourseContentController {
     @Autowired
     private CourseContentService courseContentService;
 
+    /*课程内容展示*/
     @RequestMapping("/findSectionAndLesson")
     public ResponseResult findSectionAndLessonByCourseId(@RequestParam int courseId){
         try {
@@ -96,10 +97,10 @@ public class CourseContentController {
 
     }
 
-    /*** 保存&修改课时 * */
+    /* 保存&修改课时 */
     @RequestMapping("/saveOrUpdateLesson")
     public ResponseResult saveOrUpdateLesson(@RequestBody CourseLesson lesson){
-        /*try {
+        try {
             if(lesson.getId() == null){
                 courseContentService.saveLesson(lesson);
                 return new ResponseResult(true,200,"响应成功",null);
@@ -110,8 +111,6 @@ public class CourseContentController {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }*/
-        courseContentService.saveLesson(lesson);
-        return new ResponseResult(true,200,"响应成功",null);
+        }
     }
 }

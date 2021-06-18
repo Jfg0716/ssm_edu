@@ -35,4 +35,5 @@ public interface CourseContentService {
     public void updateSectionStatus(int id,int status);
 
     public void saveLesson(CourseLesson lesson);
+    public void updateLesson(CourseLesson lesson);
 }

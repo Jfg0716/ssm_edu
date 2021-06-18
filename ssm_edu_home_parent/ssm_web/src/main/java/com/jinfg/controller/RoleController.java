@@ -26,6 +26,7 @@ public class RoleController {
     @Autowired
     private MenuService menuService;
 
+    /* 角色列表查询&条件查询 */
     @RequestMapping("/findAllRole")
     public ResponseResult findAllRole(@RequestBody Role role){
         try {
@@ -38,6 +39,23 @@ public class RoleController {
         return null;
     }
 
+    /* 添加&修改角色 */
+    @RequestMapping("/saveOrUpdateRole")
+    public ResponseResult saveOrUpdateRole(@RequestBody Role role){
+        ResponseResult result = null;
+        if (role.getId() == null){
+            // 新增
+            roleService.saveRole(role);
+            result = new ResponseResult(true,200,"响应成功",null);
+        } else {
+            //修改
+            roleService.updateRole(role);
+            result = new ResponseResult(true,200,"响应成功",null);
+        }
+        return result;
+    }
+
+    /* 查询所有菜单列表 */
     @RequestMapping("/findAllMenu")
     public ResponseResult findAllMenu(){
         List<Menu> listByPid = menuService.findSubMenuListByPid(-1);
@@ -47,23 +65,21 @@ public class RoleController {
         return result;
     }
 
-    /*** 查询角色关联菜单列表ID * */
+    /* 查询角色关联菜单列表ID */
     @RequestMapping("/findMenuByRoleId")
     public ResponseResult findMenuByRoleId(Integer roleId){
         List<String> list = roleService.findMenuByRoleId(roleId);
         return new ResponseResult(true, 200, "响应成功！", list);
     }
 
-    /*
-    * 用户关联菜单 {roleId: 4, menuIdList: [19, 20, 7, 8, 9, 15, 16, 17, 18]}
-    */
+    /*  为角色分配菜单  */
     @RequestMapping("/roleContextMenu")
     public ResponseResult roleContextMenu(@RequestBody RoleMenuVo roleMenuVo){
         roleService.roleContextMenu(roleMenuVo);
         return new ResponseResult(true,200,"响应成功！",null);
     }
 
-    /** * 删除角色 * */
+    /*  删除角色  */
     @RequestMapping("/deleteRole")
     public ResponseResult deleteRole(Integer id){
         roleService.deleteRole(id);

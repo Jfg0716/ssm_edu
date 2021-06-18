@@ -36,5 +36,5 @@ public interface CourseContentMapper {
     /*** 保存课时 * */
     public void saveLesson(CourseLesson lesson);
 
-//    void updateSection(CourseLesson lesson);
+    void updateLesson(CourseLesson lesson);
 }

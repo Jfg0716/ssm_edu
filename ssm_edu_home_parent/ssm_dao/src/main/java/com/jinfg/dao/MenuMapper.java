@@ -16,4 +16,8 @@ public interface MenuMapper {
     public List<Menu> findAllMenu();
 
     Menu findMenuById(Integer id);
+
+    public void saveMenu(Menu menu);
+    public void updateMenu(Menu menu);
+
 }

@@ -1,5 +1,6 @@
 package com.jinfg.dao;
 
+import com.jinfg.domain.Course;
 import com.jinfg.domain.PromotionAd;
 import com.jinfg.domain.Role;
 import com.jinfg.domain.Role_menu_relation;
@@ -31,5 +32,15 @@ public interface RoleMapper {
 
     /* 删除角色 */
     void deleteRole(Integer id);
+
+    /*
+        添加&修改角色
+    */
+    public void saveRole(Role role);
+
+    /*
+         添加&修改角色
+     */
+    public void updateRole(Role role);
 
 }

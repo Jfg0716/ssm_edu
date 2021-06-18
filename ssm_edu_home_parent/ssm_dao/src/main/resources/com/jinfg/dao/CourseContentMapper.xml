@@ -102,33 +102,30 @@
             VALUES(#{id},#{courseId},#{sectionId},#{theme},#{duration},#{isFree}, #{orderNum},#{createTime},#{updateTime});
     </insert>
 
-    <!--<update id="updateSection" parameterType="com.jinfg.domain.CourseLesson">
+    <update id="updateLesson" parameterType="com.jinfg.domain.CourseLesson">
+        update course_lesson
         <trim prefix="SET" suffixOverrides=",">
             <if test="theme != null and theme != ''">
                 theme = #{theme},
             </if>
-
             <if test="duration != null and duration != ''">
                 duration = #{duration},
             </if>
-
-            <if test="is_free != null and is_free != ''">
-                is_free = #{is_free},
+            <if test="isFree != null and isFree != ''">
+                is_free = #{isFree},
             </if>
-
             <if test="orderNum != null and orderNum != '' or orderNum == 0">
                 order_num = #{orderNum},
             </if>
-
             <if test="updateTime != null">
                 update_time=#{updateTime},
             </if>
-
         </trim>
-
         <where>
-            <if test="id != null and id != '' ">id = #{id}</if>
+            <if test="id != null and id != '' ">
+            id = #{id}
+            </if>
         </where>
-    </update>-->
+    </update>
 
 </mapper>
